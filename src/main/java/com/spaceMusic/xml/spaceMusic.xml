@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SpaceMusic">
+
+	<!-- 로그인 할 때 사용되는 sql문 -->
+	<select id="login" parameterType="hashmap" resultType="UserDTO">
+		SELECT *
+		FROM USER_TBL ut WHERE USER_ID = #{user_id} AND USER_PW =
+		#{user_pw}
+	</select>
+
+	<!-- 회원정보 수정시 유저 데이터 가져오는 sql문 -->
+	<select id="modifyUserData" parameterType="String"
+		resultType="UserDTO">
+		SELECT *
+		FROM USER_TBL ut WHERE USER_ID = #{user_id}
+	</select>
+
+	<!-- 전체 음악리스트 가져오는 sql문 -->
+	<select id="getMusicList" resultType="MusicDTO">
+		select * from music_tbl
+	</select>
+
+	<!-- top100순서대로 음악리스트 가져오는 sql문 -->
+	<select id="AllMusicArr" resultType="_int">
+		SELECT music_id FROM
+		MUSIC_TBL mt ORDER BY TO_NUMBER(MUSIC_ID)
+	</select>
+
+	<!-- 좋아요를 누른 music_id 만 가져오는 sql문 -->
+	<select id="getlikesong" parameterType="String"
+		resultType="_int">
+		SELECT music_id FROM USERMUSICJOIN_TBL WHERE USER_id =
+		#{user_id}
+	</select>
+
+	<!-- 아이디별 좋아요 누른 음악정보 가져오는 sql문 -->
+	<select id="getlikesonginfo" parameterType="String"
+		resultType="MusicDTO">
+		SELECT mt2.*
+		FROM USERMUSICJOIN_TBL ut
+		LEFT OUTER JOIN
+		MUSIC_TBL mt2
+		ON ut.MUSIC_ID = mt2.MUSIC_ID
+		WHERE ut.USER_ID =
+		#{user_id}
+	</select>
+
+	<!-- 장르별 음악리스트 가져온는 sql문 -->
+	<select id="getMusicListByGenre" resultType="MusicDTO"
+		parameterType="_int">
+		select * from music_tbl WHERE GENRE_ID = #{genre_id}
+	</select>
+
+	<!-- 장르별 음악ID값 가져온는 sql문 -->
+	<select id="MusicArr" parameterType="_int" resultType="_int">
+		SELECT
+		music_id FROM MUSIC_TBL mt2 WHERE genre_id = #{genre_id}
+	</select>
+
+	<!-- 회원가입 sql문 -->
+	<insert id="signup" parameterType="UserDTO">
+		INSERT INTO USER_TBL
+		VALUES
+		(#{user_id}, #{user_pw}, #{user_name}, #{user_email}, #{user_phone},
+		#{user_picture, jdbcType=VARCHAR}, #{user_comment , jdbcType=VARCHAR})
+	</insert>
+
+	<!-- 아이디 중복확인 sql문 -->
+	<select id="selectid" parameterType="String" resultType="String">
+		SELECT
+		user_id
+		FROM USER_TBL
+		WHERE user_id = #{user_id}
+	</select>
+
+	<!-- 좋아요 노래 insert sql문 -->
+	<insert id="insertlikesong" parameterType="hashmap">
+		INSERT INTO
+		USERMUSICJOIN_TBL VALUES(#{user_id}, #{music_id})
+	</insert>
+
+	<!-- 좋아요 노래 delete sql문 -->
+	<delete id="deletelikesong" parameterType="hashmap">
+		DELETE FROM
+		UserMusicJoin_tbl WHERE USER_ID = #{user_id} and MUSIC_ID =
+		#{music_id}
+	</delete>
+
+	<!-- 회원 이름 수정 sql문 -->
+	<update id="modifyname" parameterType="String">
+		UPDATE USER_TBL
+		SET
+		USER_NAME = #{user_name}
+		WHERE USER_ID = #{user_id}
+	</update>
+
+	<!-- 회원 핸드폰번호 수정 sql문 -->
+	<update id="modifyphone" parameterType="String">
+		UPDATE USER_TBL
+		SET
+		USER_PHONE = #{user_phone}
+		WHERE USER_ID = #{user_id}
+	</update>
+
+	<!-- 회원 사진 수정 sql문 -->
+	<update id="modifypicture" parameterType="String">
+		UPDATE USER_TBL
+		SET
+		USER_PICTURE = #{user_picture}
+		WHERE USER_ID = #{user_id}
+	</update>
+
+	<!-- 회원 소개글 수정 sql문 -->
+	<update id="modifycomment" parameterType="String">
+		UPDATE USER_TBL
+		SET
+		USER_COMMENT = #{user_comment}
+		WHERE USER_ID = #{user_id}
+	</update>
+
+	<!-- 사진정보 불러오는 sql문 -->
+	<select id="getpicture" parameterType="String"
+		resultType="String">
+		SELECT USER_PICTURE FROM USER_TBL
+		WHERE USER_ID = #{user_id}
+	</select>
+
+</mapper>

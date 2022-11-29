@@ -1,0 +1,21 @@
+.my_img {
+  filter: brightness(1);
+}
+
+.my_img:hover {
+  filter: brightness(0.5);
+}
+
+.modalmenu {
+  text-align: center;
+  border: none;
+  padding: 5px 60px 5px 60px;
+  background: rgba(0, 0, 0, 0);
+  color: gray;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.modalmenu:hover {
+  filter: brightness(2);
+}

@@ -1,0 +1,140 @@
+body {
+  background-color: #e9e9e9;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 1px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../images/background-image2.jpg);
+  background-size: cover;
+}
+
+* {
+  box-sizing: border-box;
+  transition: 0.25s all ease;
+}
+
+.find-container {
+  display: block;
+  position: relative;
+  z-index: 0;
+  margin: 4rem auto 0;
+  padding: 5rem 4rem 0 4rem;
+  width: 100%;
+  max-width: 525px;
+  min-height: 600px;
+  box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.85);
+}
+
+.find-container:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  opacity: 0.1;
+}
+
+.title {
+  text-align: center;
+  color: wheat;
+  font-size: 1.5rem;
+}
+
+.form-find {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.logo {
+  text-align: center;
+}
+
+.main-logo {
+  width: 200px;
+  margin-bottom: 50px;
+}
+
+.find__label {
+  display: block;
+  padding-left: 1rem;
+}
+
+.find__label,
+.find__label--checkbox {
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.find__label--checkbox {
+  display: inline-block;
+  position: relative;
+  padding-left: 1.5rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  color: #ffffff;
+  font-size: 0.75rem;
+  text-transform: inherit;
+}
+
+.find__input {
+  color: wheat;
+  font-size: 1.15rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin-bottom: 20px;
+  border: 2px solid transparent;
+  outline: none;
+  border-radius: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 1px;
+}
+
+.find__input:hover,
+.find__input:focus {
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+}
+
+.find_submit {
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.75rem;
+  border-radius: 2rem;
+  display: block;
+  width: 100%;
+  background-color: skyblue;
+  border: none;
+  cursor: pointer;
+}
+
+.phone_find_submit,
+.id_find_submit {
+  margin-top: 50px;
+}
+
+.email_find_submit,
+.pw_find_submit,
+.email_find_id_submit,
+.email_find_pw_submit {
+  margin-top: 10px;
+}
+
+.id_find_submit:hover,
+.pw_find_submit:hover,
+.email_find_id_submit:hover,
+.email_find_pw_submit:hover {
+  background-color: rgb(65, 52, 114);
+}
